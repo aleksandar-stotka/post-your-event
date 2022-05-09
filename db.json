@@ -1,0 +1,28 @@
+{
+   "posts" : [
+       {
+           "id" : 1,
+           "title" : "Welcome tho the new blog",
+            "body" : "This blog is for what do you want to write and think",
+            "tags" :[
+                "codding",
+                "news",
+                "sport"
+            ]
+
+
+       },
+       {
+           "id" : 1,
+           "title" : "TOP 50 CSS TIPSS",
+            "body" : "This blog is for what do you want to write and think",
+            "tags" :[
+                "CSS",
+                "webDev",
+                "codding"
+            ]
+
+
+       }
+   ]
+}
