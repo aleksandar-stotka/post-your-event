@@ -5,6 +5,7 @@ import Home from "../pages/Home.vue";
 import Event from "../components/event/Event.vue";
 import Register from "../components/event/Register.vue";
 import { projectAuth } from "../firebase/config";
+import CreateEventList from "@/views/eventList/CreateEventList";
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
@@ -47,6 +48,11 @@ const routes = [
     path: "/register",
     name: "regist",
     component: Register,
+  },
+  {
+    path: "/eventlist/create",
+    name: "eventlist",
+    component: CreateEventList,
   },
 ];
 
