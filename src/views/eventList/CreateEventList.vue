@@ -8,23 +8,49 @@
       v-model="description"
     ></textarea>
     <label for="">Upload playlist cover image</label>
-    <input type="file" />
+    <input type="file" @change="handleChange" />
+    <div class="error">{{ fileError }}</div>
     <button>Create</button>
   </form>
 </template>
 
 <script>
 import { ref } from "vue";
+import UseStorage from "@/composables/UseStorage";
+
 export default {
   setup() {
+    const { filePath, url, uploadImage } = UseStorage();
+
     const title = ref("");
     const description = ref("");
 
-    const handleSubmit = () => {
-      console.log(title.value, description.value);
+    const file = ref(null);
+
+    const fileError = ref(null);
+
+    const handleSubmit = async () => {
+      if (file.value) {
+        await uploadImage(file.value);
+        console.log("image upload , url", url.value);
+      }
+    };
+    ///allowed file types
+    const types = ["image/png", "image/jpeg"];
+    const handleChange = (e) => {
+      const select = e.target.files[0];
+      console.log(select);
+
+      if (select && types.includes(select.type)) {
+        file.value = select;
+        file.error.value = null;
+      } else {
+        file.value = null;
+        fileError.value = "Please select an image file (png or jpg";
+      }
     };
 
-    return { title, description, handleSubmit };
+    return { title, description, handleSubmit, handleChange, fileError };
   },
 };
 </script>
