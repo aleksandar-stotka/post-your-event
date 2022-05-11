@@ -17,10 +17,17 @@
 <script>
 import { ref } from "vue";
 import UseStorage from "@/composables/UseStorage";
+import useCollection from "../../composables/useCollection";
+import getUser from "../../composables/getUser";
+import { timestamp } from "../../firebase/config";
 
 export default {
   setup() {
     const { filePath, url, uploadImage } = UseStorage();
+
+    const { error, addDoc } = useCollection("message");
+
+    const { user } = getUser();
 
     const title = ref("");
     const description = ref("");
@@ -32,7 +39,20 @@ export default {
     const handleSubmit = async () => {
       if (file.value) {
         await uploadImage(file.value);
-        console.log("image upload , url", url.value);
+
+        await addDoc({
+          title: title.value,
+          description: description.value,
+          userId: user.value.uid,
+          userName: user.value.displayName,
+          coverUrl: url.value,
+          filePath: filePath.value,
+          songs: [],
+          createdAt: timestamp(),
+        }); //epresent object document there we want to this collection
+        if (!error.value) {
+          console.log("play lisd add");
+        }
       }
     };
     ///allowed file types

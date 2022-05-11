@@ -11,7 +11,7 @@ const useCollection = (collection) => {
       await projectFirestore.collection(collection).add(doc);
     } catch (err) {
       console.log(err.message);
-      error.value = "cold not sebd message";
+      error.value = "cold not send message";
     }
   };
   return { error, addDoc };
