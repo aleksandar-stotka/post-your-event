@@ -55,10 +55,4 @@ export default {
   display: flex;
   margin: 2em auto;
 }
-.nav {
-  width: 40rem;
-  background: rgb(46, 207, 14);
-  margin: auto;
-  font-size: 2rem;
-}
 </style>

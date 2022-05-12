@@ -14,7 +14,6 @@ export default {};
 <style>
 nav {
   width: 100%;
-  background-color: #003049;
 }
 ul {
   display: flex;
@@ -22,13 +21,13 @@ ul {
 }
 li {
   list-style: none;
-  color: aliceblue;
+
   margin: 2em;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 a {
   text-decoration: none;
-  color: aliceblue;
+  color: rgb(16, 50, 80);
 }
 </style>

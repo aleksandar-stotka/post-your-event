@@ -59,7 +59,7 @@ export default {
   box-shadow: 1px 0.5px 0 var(--clr-primary);
 }
 .content {
-  background-color: #358597;
+  background-color: #fafbfc;
   height: 88vh;
 }
 .welcome form {

@@ -33,7 +33,6 @@ export default {};
   width: 100%;
 
   height: 90vh;
-  background-color: #358597;
 }
 
 .banner-text {
