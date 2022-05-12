@@ -1,17 +1,19 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <h4>Create new Event</h4>
-    <input type="text" required placeholder="Event title" v-model="title" />
-    <textarea
-      required
-      placeholder="event description.."
-      v-model="description"
-    ></textarea>
-    <label for="">Upload playlist cover image</label>
-    <input type="file" @change="handleChange" />
-    <div class="error">{{ fileError }}</div>
-    <button>Create</button>
-  </form>
+  <div>
+    <form @submit.prevent="handleSubmit">
+      <h4>Create new Event</h4>
+      <input type="text" required placeholder="Event title" v-model="title" />
+      <textarea
+        required
+        placeholder="event description.."
+        v-model="description"
+      ></textarea>
+      <label for="">Upload playlist cover image</label>
+      <input type="file" @change="handleChange" />
+      <div class="error">{{ fileError }}</div>
+      <button>Create</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -24,22 +26,15 @@ import { timestamp } from "../../firebase/config";
 export default {
   setup() {
     const { filePath, url, uploadImage } = UseStorage();
-
-    const { error, addDoc } = useCollection("message");
-
+    const { error, addDoc } = useCollection("playlists");
     const { user } = getUser();
-
     const title = ref("");
     const description = ref("");
-
     const file = ref(null);
-
     const fileError = ref(null);
-
     const handleSubmit = async () => {
       if (file.value) {
         await uploadImage(file.value);
-
         await addDoc({
           title: title.value,
           description: description.value,
@@ -60,7 +55,6 @@ export default {
     const handleChange = (e) => {
       const select = e.target.files[0];
       console.log(select);
-
       if (select && types.includes(select.type)) {
         file.value = select;
         file.error.value = null;
@@ -69,7 +63,6 @@ export default {
         fileError.value = "Please select an image file (png or jpg";
       }
     };
-
     return { title, description, handleSubmit, handleChange, fileError };
   },
 };

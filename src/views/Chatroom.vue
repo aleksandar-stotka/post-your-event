@@ -3,25 +3,23 @@
     <div v-if="hideNav" class="nav">
       <Navbar />
     </div>
-    <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
 import ChatWindow from "../components/ChatWindow.vue";
 import Navbar from "../components/Navbar.vue";
-import PostList from "../components/PostList.vue";
 import getUser from "../composables/getUser";
 import { watch } from "vue";
 import { useRouter } from "vue-router";
 import { ref, computed } from "vue";
 
 export default {
+  props: ["playlists"],
   components: {
     Navbar,
 
     ChatWindow,
-    PostList,
   },
   setup() {
     const hideNav = ref(false);

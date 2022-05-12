@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <Nav />
     <router-view> </router-view>
   </div>
@@ -25,10 +25,9 @@ export default {
 }
 
 /* base styles  */
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Nunito", sans-serif;
-  color: var(--primary);
+.content {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 20px;
 }
 </style>

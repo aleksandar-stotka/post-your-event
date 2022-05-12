@@ -1,13 +1,17 @@
 <template>
   <div class="chat-window">
-    <div v-if="error">{{ error }} hwloo</div>
-    <div class="messages" v-if="documents">
-      <div v-for="doc in documents" :key="doc.id" class="single">
-        <span class="name">
-          {{ doc.title }}
-        </span>
-        <div class="test">
-          jas sum test
+    <div v-if="error">{{ error }}some error</div>
+    <div v-for="doc in documents" :key="doc.id">
+      <div class="single">
+        <div class="thumbnail">
+          <img :src="doc.coverUrl" />
+        </div>
+        <div class="info">
+          <h3>{{ doc.title }}</h3>
+          <p>Created by {{ doc.userName }}</p>
+        </div>
+        <div class="song-number">
+          <p>{{ doc.songs.length }}</p>
         </div>
       </div>
     </div>
@@ -16,17 +20,49 @@
 
 <script>
 import getCollection from "../composables/getCollection";
+import ListView from "../components/ListView.vue";
 export default {
+  name: "listview",
   setup() {
-    const { error, documents } = getCollection("message");
-
+    const { error, documents } = getCollection("playlists");
+    console.log(documents);
     return { error, documents };
   },
+  components: { ListView },
 };
 </script>
 
 <style scoped>
-span {
-  color: rgb(138, 18, 18);
+.single {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  margin: 16px 0;
+  transition: all ease 0, 2s;
+}
+.single:hover {
+  box-shadow: 1px, 2px, 3px rgba(50, 50, 50, 0.5);
+  transform: scale(1.03);
+  transition: all ease 0.2s;
+}
+
+.thumbnail {
+  max-width: 100px;
+  max-height: 100px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+img {
+  max-width: 150%;
+  max-height: 150%;
+  display: block;
+}
+.info {
+  margin: 0 30px;
+}
+.song-number {
+  margin-left: auto;
 }
 </style>
