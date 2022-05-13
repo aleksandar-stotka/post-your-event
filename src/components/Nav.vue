@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ul>
-      <li><router-link to="/">HOME</router-link></li>
+      <li><router-link to="/eventList">HOME</router-link></li>
       <li>about page</li>
     </ul>
   </nav>
@@ -27,7 +27,5 @@ li {
   text-transform: uppercase;
 }
 a {
-  text-decoration: none;
-  color: rgb(16, 50, 80);
 }
 </style>
