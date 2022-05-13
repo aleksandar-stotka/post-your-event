@@ -29,7 +29,6 @@ const routes = [
     path: "/chatroom",
     name: "Chatroom",
     component: Chatroom,
-    beforeEnter: requireAuth,
   },
   {
     path: "/",
@@ -53,8 +52,9 @@ const routes = [
   },
   {
     path: "/eventlist/create",
-    name: "eventlist",
+    name: "CreatePlayList",
     component: CreateEventList,
+    beforeEnter: requireAuth,
   },
   {
     path: "/eventList",

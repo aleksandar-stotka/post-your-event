@@ -2,6 +2,7 @@
   <div class="">
     <div v-if="hideNav" class="nav">
       <Navbar />
+      <EventList />
     </div>
   </div>
 </template>
@@ -13,13 +14,14 @@ import getUser from "../composables/getUser";
 import { watch } from "vue";
 import { useRouter } from "vue-router";
 import { ref, computed } from "vue";
+import EventList from "../pages/EventList.vue";
 
 export default {
   props: ["playlists"],
   components: {
     Navbar,
-
     ChatWindow,
+    EventList,
   },
   setup() {
     const hideNav = ref(false);
@@ -49,10 +51,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  width: 90rem;
-  display: flex;
-  margin: 2em auto;
-}
-</style>
+<style scoped></style>

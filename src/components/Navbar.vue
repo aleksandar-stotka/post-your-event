@@ -5,6 +5,13 @@
     </div>
     <p class="email">Currently logged in as {{ user.email }}</p>
     <button class="btn" @click="handleClick">Logout</button>
+    <li>
+      <div v-if="user">
+        <router-link :to="{ name: 'CreatePlayList' }"
+          >Create playList</router-link
+        >
+      </div>
+    </li>
   </nav>
 </template>
 
