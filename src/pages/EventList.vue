@@ -2,18 +2,20 @@
   <div class="chat-window">
     <div v-if="error">{{ error }}some error</div>
     <div v-for="doc in documents" :key="doc.id">
-      <div class="single">
-        <div class="thumbnail">
-          <img :src="doc.coverUrl" />
+      <router-link :to="{ name: 'details', params: { id: doc.id } }">
+        <div class="single">
+          <div class="thumbnail">
+            <img :src="doc.coverUrl" />
+          </div>
+          <div class="info">
+            <h3>{{ doc.title }}</h3>
+            <p>Created by {{ doc.userName }}</p>
+          </div>
+          <div class="song-number">
+            <p>{{ doc.songs.length }}</p>
+          </div>
         </div>
-        <div class="info">
-          <h3>{{ doc.title }}</h3>
-          <p>Created by {{ doc.userName }}</p>
-        </div>
-        <div class="song-number">
-          <p>{{ doc.songs.length }}</p>
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

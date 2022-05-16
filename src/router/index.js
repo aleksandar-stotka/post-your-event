@@ -8,6 +8,7 @@ import { projectAuth } from "../firebase/config";
 import CreateEventList from "@/views/eventList/CreateEventList";
 import EventList from "@/pages/EventList";
 import ListView from "@/components/ListView";
+import PlayListDetails from "@/views/eventList/PlayListDetails";
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
@@ -65,6 +66,13 @@ const routes = [
     path: "/listView",
     name: "listview",
     component: ListView,
+  },
+  {
+    path: "/details/:id",
+    name: "details",
+    component: PlayListDetails,
+    beforeEnter: requireAuth,
+    props: true,
   },
 ];
 

@@ -11,7 +11,7 @@
       <label for="">Upload playlist cover image</label>
       <input type="file" @change="handleChange" />
       <div class="error">{{ fileError }}</div>
-      <button>Create</button>
+      <button @click="handleCreate">Create</button>
     </form>
   </div>
 </template>
@@ -22,12 +22,14 @@ import UseStorage from "@/composables/UseStorage";
 import useCollection from "../../composables/useCollection";
 import getUser from "../../composables/getUser";
 import { timestamp } from "../../firebase/config";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const { filePath, url, uploadImage } = UseStorage();
     const { error, addDoc } = useCollection("playlists");
     const { user } = getUser();
+    const router = useRouter();
     const title = ref("");
     const description = ref("");
     const file = ref(null);
@@ -35,7 +37,7 @@ export default {
     const handleSubmit = async () => {
       if (file.value) {
         await uploadImage(file.value);
-        await addDoc({
+        const res = await addDoc({
           title: title.value,
           description: description.value,
           userId: user.value.uid,
@@ -46,10 +48,12 @@ export default {
           createdAt: timestamp(),
         }); //epresent object document there we want to this collection
         if (!error.value) {
-          console.log("play lisd add");
+          router.push({ name: "details", params: { id: res.id } });
         }
       }
     };
+
+    const newRoute = () => {};
     ///allowed file types
     const types = ["image/png", "image/jpeg"];
     const handleChange = (e) => {
@@ -63,7 +67,19 @@ export default {
         fileError.value = "Please select an image file (png or jpg";
       }
     };
-    return { title, description, handleSubmit, handleChange, fileError };
+    const handleCreate = () => {
+      if (select) {
+        router.push("/create");
+      }
+    };
+    return {
+      title,
+      description,
+      handleSubmit,
+      handleChange,
+      fileError,
+      handleCreate,
+    };
   },
 };
 </script>

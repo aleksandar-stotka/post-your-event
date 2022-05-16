@@ -8,7 +8,8 @@ const useCollection = (collection) => {
     error.value = null;
 
     try {
-      await projectFirestore.collection(collection).add(doc);
+      const res = await projectFirestore.collection(collection).add(doc);
+      return res;
     } catch (err) {
       console.log(err.message);
       error.value = "cold not send message";

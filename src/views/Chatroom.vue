@@ -1,7 +1,6 @@
 <template>
   <div class="">
     <div v-if="hideNav" class="nav">
-      <Navbar />
       <EventList />
     </div>
   </div>
@@ -9,7 +8,6 @@
 
 <script>
 import ChatWindow from "../components/ChatWindow.vue";
-import Navbar from "../components/Navbar.vue";
 import getUser from "../composables/getUser";
 import { watch } from "vue";
 import { useRouter } from "vue-router";
@@ -19,7 +17,6 @@ import EventList from "../pages/EventList.vue";
 export default {
   props: ["playlists"],
   components: {
-    Navbar,
     ChatWindow,
     EventList,
   },
