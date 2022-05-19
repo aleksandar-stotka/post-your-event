@@ -15,8 +15,6 @@
           </div>
         </li>
       </nav>
-      <li><router-link to="/eventList">HOME</router-link></li>
-      <li>about page</li>
     </ul>
   </nav>
 </template>

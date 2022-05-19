@@ -9,6 +9,7 @@
         <h2>{{ event.title }}</h2>
         <p class="username">Created by {{ event.userName }}</p>
         <p class="description">{{ event.description }}</p>
+        <button v-if="ownership">Delete</button>
       </div>
       <div class="song-list">
         <p>list here</p>
@@ -19,12 +20,19 @@
 
 <script>
 import getDocument from "../../composables/getDocument";
+import getUser from "../../composables/getUser";
+import { computed } from "vue";
 export default {
   props: ["id"],
   setup(props) {
     const { error, document: event } = getDocument("playlists", props.id);
+    const { user } = getUser();
 
-    return { error, event };
+    const ownership = computed(() => {
+      return event.value && user.value && user.value.uid == event.value.userId;
+    });
+
+    return { error, event, ownership };
   },
 };
 </script>
