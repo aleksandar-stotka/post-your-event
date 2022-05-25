@@ -6,6 +6,7 @@ const getDocument = (collection, id) => {
   const error = ref(null);
 
   let documentRef = projectFirestore.collection(collection).doc(id);
+  //get reference to spesific documents doc and id to get reference to the single document
 
   const unsub = documentRef.onSnapshot(
     (doc) => {

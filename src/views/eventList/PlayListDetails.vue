@@ -27,9 +27,12 @@ export default {
   setup(props) {
     const { error, document: event } = getDocument("playlists", props.id);
     const { user } = getUser();
+    ////// only if we have value for the event
 
     const ownership = computed(() => {
       return event.value && user.value && user.value.uid == event.value.userId;
+      ///if event have value will be true
+      //must pass three coditional because ownership to be true
     });
 
     return { error, event, ownership };
