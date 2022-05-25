@@ -3,6 +3,9 @@ import "firebase/firestore";
 import "firebase/auth";
 import "firebase/storage";
 
+//connect firebase with other components
+//we take from here if something we need on other
+
 const firebaseConfig = {
   apiKey: "AIzaSyAY7mnqD96a58_F7MA-m321CQ-L9RODzlw",
   authDomain: "vue-chat-92f79.firebaseapp.com",
