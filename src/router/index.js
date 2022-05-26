@@ -22,12 +22,12 @@ const requireAuth = (to, from, next) => {
 
 const routes = [
   {
-    path: "/",
+    path: "/welcome",
     name: "welcome",
     component: Welcome,
   },
   {
-    path: "/chatroom",
+    path: "/",
     name: "Chatroom",
     component: Chatroom,
   },

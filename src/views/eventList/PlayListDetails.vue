@@ -9,7 +9,7 @@
         <h2>{{ event.title }}</h2>
         <p class="username">Created by {{ event.userName }}</p>
         <p class="description">{{ event.description }}</p>
-        <button v-if="ownership">Delete</button>
+        <button @click="handleDelete" v-if="ownership">Delete</button>
       </div>
       <div class="song-list">
         <p>list here</p>
@@ -22,11 +22,26 @@
 import getDocument from "../../composables/getDocument";
 import getUser from "../../composables/getUser";
 import { computed } from "vue";
+import useDocuments from "@/composables/useDocuments";
+import UseStorage from "../../composables/UseStorage";
+import { useRouter } from "vue-router";
+import router from "../../router";
 export default {
   props: ["id"],
   setup(props) {
     const { error, document: event } = getDocument("playlists", props.id);
     const { user } = getUser();
+    const { deleteDocuments } = useDocuments("playlists", props.id);
+    const { deleteImage } = UseStorage();
+
+    ///////////////////////////////////////
+    const handleDelete = async () => {
+      await deleteImage(event.value.filePath);
+
+      await deleteDocuments();
+      router.push({ name: "Chatroom" });
+    };
+
     ////// only if we have value for the event
 
     const ownership = computed(() => {
@@ -35,7 +50,7 @@ export default {
       //must pass three coditional because ownership to be true
     });
 
-    return { error, event, ownership };
+    return { error, event, ownership, handleDelete };
   },
 };
 </script>

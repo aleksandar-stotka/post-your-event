@@ -9,7 +9,7 @@ const useDocuments = (collection, id) => {
   const docRef = projectFirestore.collection(collection).doc(id);
   ////we get collection from firestore
 
-  const deleteDocuments = () => {
+  const deleteDocuments = async () => {
     isPanding.value = true;
     error.value = null;
     try {
