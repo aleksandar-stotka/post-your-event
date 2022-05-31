@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="login">
-      <li><router-link to="/wel">LOG IN</router-link></li>
+      <li><router-link to="/login">LOG IN</router-link></li>
     </div>
   </div>
 </template>

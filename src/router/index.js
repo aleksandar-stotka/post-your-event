@@ -28,6 +28,11 @@ const routes = [
   },
   {
     path: "/",
+    name: "home",
+    component: Home,
+  },
+  {
+    path: "/chatroom",
     name: "Chatroom",
     component: Chatroom,
   },
